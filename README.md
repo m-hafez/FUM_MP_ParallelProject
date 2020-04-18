@@ -5,3 +5,9 @@ this project applying [Gaussian blur](https://en.wikipedia.org/wiki/Gaussian_blu
 
 ## Requirements
 * [imagemagick](https://imagemagick.org/script/download.php)
+
+## compiling
+
+```sh
+g++ .\main.cpp -o .\main -O2 -lgdi32
+```
