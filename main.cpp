@@ -42,7 +42,7 @@ double **applyFilter(double **image, double **filter, int width, int height)
     int filterWidth = 5;
     int newImageHeight = height - filterHeight + 1;
     int newImageWidth = width - filterWidth + 1;
-    int d, i, j, h, w;
+    int i, j, h, w;
 
     double **newImage;
     newImage = new double *[height];
@@ -59,36 +59,36 @@ double **applyFilter(double **image, double **filter, int width, int height)
     //     }
     // }
 
-    // for (i = 0; i < newImageHeight; i++)
-    // {
-    //     for (j = 0; j < newImageWidth; j++)
-    //     {
-    //         for (h = i; h < i + filterHeight; h++)
-    //         {
-    //             for (w = j; w < j + filterWidth; w++)
-    //             {
-    //                 newImage[i][j] += filter[h - i][w - j] * image[h][w];
-    //             }
-    //         }
-    //     }
-    // }
-
-    int sum;
-    for (int y = 1; y < height - 1; y++)
+    for (i = 0; i < newImageHeight; i++)
     {
-        for (int x = 1; x < width - 1; x++)
+        for (j = 0; j < newImageWidth; j++)
         {
-            sum = 0.0;
-            for (int k = -1; k <= 1; k++)
+            for (h = i; h < i + filterHeight; h++)
             {
-                for (int j = -1; j <= 1; j++)
+                for (w = j; w < j + filterWidth; w++)
                 {
-                    sum = sum + filter[j + 1][k + 1] * image[y - j][x - k];
+                    newImage[i][j] += filter[h - i][w - j] * image[h][w];
                 }
             }
-            newImage[y][x] = sum;
         }
     }
+
+    // int sum;
+    // for (int y = 1; y < height - 1; y++)
+    // {
+    //     for (int x = 1; x < width - 1; x++)
+    //     {
+    //         sum = 0.0;
+    //         for (int k = -1; k <= 1; k++)
+    //         {
+    //             for (int j = -1; j <= 1; j++)
+    //             {
+    //                 sum = sum + filter[j + 1][k + 1] * image[y - j][x - k];
+    //             }
+    //         }
+    //         newImage[y][x] = sum;
+    //     }
+    // }
 
     return newImage;
 }
