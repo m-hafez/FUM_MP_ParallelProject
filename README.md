@@ -9,7 +9,6 @@ this project applying [Gaussian blur](https://en.wikipedia.org/wiki/Gaussian_blu
 ## CUDA version Google Colab
 * [FUM_MP_ParallelProject-2_98-99.ipynb](https://colab.research.google.com/drive/1SLtdS1veZZU5Fy9zX8lLAZk5o5ogKmJu?usp=sharing)
 
-## compiling
 
 ## compile on windows 
 ```sh
