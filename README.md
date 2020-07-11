@@ -20,7 +20,7 @@ g++ .\main.cpp -o .\main -O2 -lgdi32 -fopenmp
 ```
 * with cuda
 ```sh
-!nvcc -o /content/main /content/main.cu -O2 -lgdi32 
+!nvcc -o .\main .\main.cu -O2 -lgdi32 
 ```
 ## compile on linux
 
