@@ -20,7 +20,7 @@ g++ .\main.cpp -o .\main -O2 -lgdi32 -fopenmp
 ```
 * with cuda
 ```sh
-!nvcc -o .\main .\main.cu -O2 -lgdi32 
+nvcc -o .\main .\main.cu -O2 -lgdi32 
 ```
 ## compile on linux
 
@@ -33,5 +33,5 @@ g++ main.cpp -o main -O2 -L/usr/X11R6/lib -lm -lpthread -lX11 -fopenmp
 ```
 * with cuda
 ```sh
-!nvcc -o main main.cu -O2 -L/usr/X11R6/lib -lm -lpthread -lX11 
+nvcc -o main main.cu -O2 -L/usr/X11R6/lib -lm -lpthread -lX11 
 ```
