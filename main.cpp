@@ -12,26 +12,18 @@ double **getGaussian(int height, int width, double sigma)
 
     filter = new double *[height];
     for (int i = 0; i < height; i++)
-    {
         filter[i] = new double[width];
-    }
 
     for (i = 0; i < height; i++)
-    {
         for (j = 0; j < width; j++)
         {
             filter[i][j] = exp(-(i * i + j * j) / (2 * sigma * sigma)) / (2 * M_PI * sigma * sigma);
             sum += filter[i][j];
         }
-    }
 
     for (i = 0; i < height; i++)
-    {
         for (j = 0; j < width; j++)
-        {
             filter[i][j] /= sum;
-        }
-    }
 
     return filter;
 }
@@ -69,26 +61,19 @@ int main(int argc, char const *argv[])
 
     int width = originalImage.width();
     int height = originalImage.height();
-    int depth = originalImage.depth();
 
     kernel = new double **[3];
     for (int i = 0; i < 3; i++)
     {
         kernel[i] = new double *[width];
         for (int j = 0; j < width; j++)
-        {
             kernel[i][j] = new double[height];
-        }
     }
 
-    for (int x = 0; x < width; x++)
-        for (int y = 0; y < height; y++)
-        {
-
-            kernel[0][x][y] = originalImage(x, y, 0, 0);
-            kernel[1][x][y] = originalImage(x, y, 0, 1);
-            kernel[2][x][y] = originalImage(x, y, 0, 2);
-        }
+    for (int k = 0; k < 3; k++)
+        for (int x = 0; x < width; x++)
+            for (int y = 0; y < height; y++)
+                kernel[k][x][y] = originalImage(x, y, 0, k);
 
     CImgDisplay Original_image(originalImage, "Original image");
 
