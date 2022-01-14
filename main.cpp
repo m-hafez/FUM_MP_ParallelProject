@@ -36,115 +36,80 @@ double **getGaussian(int height, int width, double sigma)
     return filter;
 }
 
-double **applyFilter(double **image, double **filter, int width, int height)
+double ***applyFilter(double ***image, double **filter, int width, int height, int filterWidth, int filterHeight)
 {
-    int filterHeight = 5;
-    int filterWidth = 5;
+
     int newImageHeight = height - filterHeight + 1;
     int newImageWidth = width - filterWidth + 1;
-    int i, j, h, w;
+    int d, i, j, h, w;
 
-    double **newImage;
-    newImage = new double *[height];
-    for (int i = 0; i < height; i++)
+    double ***newImage;
+    newImage = new double **[3];
+    for (int i = 0; i < 3; i++)
     {
-        newImage[i] = new double[width];
+        newImage[i] = new double *[width];
+        for (int j = 0; j < width; j++)
+            newImage[i][j] = new double[height];
     }
 
-    // for (int i = 0; i < height; i++)
-    // {
-    //     for (int j = 0; j < width; j++)
-    //     {
-    //         newImage[i][j] = 0.0;
-    //     }
-    // }
-
-    for (i = 0; i < newImageHeight; i++)
-    {
-        for (j = 0; j < newImageWidth; j++)
-        {
-            for (h = i; h < i + filterHeight; h++)
-            {
-                for (w = j; w < j + filterWidth; w++)
-                {
-                    newImage[i][j] += filter[h - i][w - j] * image[h][w];
-                }
-            }
-        }
-    }
-
-    // int sum;
-    // for (int y = 1; y < height - 1; y++)
-    // {
-    //     for (int x = 1; x < width - 1; x++)
-    //     {
-    //         sum = 0.0;
-    //         for (int k = -1; k <= 1; k++)
-    //         {
-    //             for (int j = -1; j <= 1; j++)
-    //             {
-    //                 sum = sum + filter[j + 1][k + 1] * image[y - j][x - k];
-    //             }
-    //         }
-    //         newImage[y][x] = sum;
-    //     }
-    // }
+    for (d = 0; d < 3; d++)
+        for (i = 0; i < newImageWidth; i++)
+            for (j = 0; j < newImageHeight; j++)
+                for (h = i; h < i + filterWidth; h++)
+                    for (w = j; w < j + filterHeight; w++)
+                        newImage[d][i][j] += filter[h - i][w - j] * image[d][h][w];
 
     return newImage;
 }
 
 int main(int argc, char const *argv[])
 {
-    CImg<unsigned char> originalImage("img/RE1LDN2.jpg"), visu(500, 400, 1, 3, 0);
-    const unsigned char red[] = {255, 0, 0}, green[] = {0, 255, 0}, blue[] = {0, 0, 255};
-    double **kernel;
+    CImg<unsigned char> originalImage("img/input.jpg"), visu(500, 400, 1, 3, 0);
+    double ***kernel;
 
     int width = originalImage.width();
     int height = originalImage.height();
+    int depth = originalImage.depth();
 
-    kernel = new double *[height];
-    for (int i = 0; i < height; i++)
+    kernel = new double **[3];
+    for (int i = 0; i < 3; i++)
     {
-        kernel[i] = new double[width];
-    }
-
-    for (int y = 0; y < height; y++)
-    {
-        for (int x = 0; x < width; x++)
+        kernel[i] = new double *[width];
+        for (int j = 0; j < width; j++)
         {
-            kernel[y][x] = (double)originalImage(x, y);
+            kernel[i][j] = new double[height];
         }
     }
+
+    for (int x = 0; x < width; x++)
+        for (int y = 0; y < height; y++)
+        {
+
+            kernel[0][x][y] = originalImage(x, y, 0, 0);
+            kernel[1][x][y] = originalImage(x, y, 0, 1);
+            kernel[2][x][y] = originalImage(x, y, 0, 2);
+        }
 
     CImgDisplay Original_image(originalImage, "Original image");
 
-    // originalImage.blur(2.5);
-    // CImgDisplay Original_s_image(originalImage, "Original dd image");
-
-    CImg<unsigned char> image(width, height);
     /**/
-    kernel = applyFilter(kernel, getGaussian(5, 5, 15.0), width, height);
+    int filterHeight = 25;
+    int filterWidth = 25;
+    kernel = applyFilter(kernel, getGaussian(filterHeight, filterWidth, 10.0), width, height, filterWidth, filterHeight);
     /**/
 
-    for (int y = 0; y < height; y++)
-    {
-        for (int x = 0; x < width; x++)
-        {
-            image(x, y) = kernel[y][x];
-        }
-    }
+    int bluredImageHeight = height - filterHeight + 1;
+    int bluredImageWidth = width - filterWidth + 1;
+    CImg<unsigned char> image(bluredImageWidth, bluredImageHeight, 1, 3);
 
-    CImgDisplay main_disp(image, "Modified image, Click a point"), draw_disp(visu, "Intensity profile");
-    while (!main_disp.is_closed() && !draw_disp.is_closed())
-    {
-        main_disp.wait();
-        if (main_disp.button() && main_disp.mouse_y() >= 0)
-        {
-            const int y = main_disp.mouse_y();
-            visu.fill(0).draw_graph(image.get_crop(0, y, 0, 0, image.width() - 1, y, 0, 0), red, 1, 1, 0, 255, 0);
-            visu.draw_graph(image.get_crop(0, y, 0, 1, image.width() - 1, y, 0, 1), green, 1, 1, 0, 255, 0);
-            visu.draw_graph(image.get_crop(0, y, 0, 2, image.width() - 1, y, 0, 2), blue, 1, 1, 0, 255, 0).display(draw_disp);
-        }
-    }
+    for (int k = 0; k < 3; k++)
+        for (int x = 0; x < bluredImageWidth; x++)
+            for (int y = 0; y < bluredImageHeight; y++)
+                image(x, y, 0, k) = kernel[k][x][y];
+
+    image.normalize(0, 255);
+    CImgDisplay bluredImage(image, "Blured Image");
+    while (!bluredImage.is_closed())
+        bluredImage.wait();
     return 0;
 }
