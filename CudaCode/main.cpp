@@ -1,6 +1,6 @@
 #include <iostream>
 #include "GaussianBlurFilter.h"
-#include "cimg/CImg.h"
+#include "../cimg/CImg.h"
 #include <iostream>
 #include <cmath>
 
@@ -10,7 +10,7 @@ int main(int argc, char const *argv[])
 {
     GBFilter filter;
     //Read input image
-    CImg<unsigned char> originalImage("img/input.jpg"), visu(500, 400, 1, 3, 0);
+    CImg<unsigned char> originalImage("../img/input.jpg"), visu(500, 400, 1, 3, 0);
     /*
       For store RGB image data int  3d double aaray
       kernel[k][x][y]
