@@ -59,7 +59,7 @@ int main(int argc, char const *argv[])
     //Read input image
     CImg<unsigned char> originalImage("img/input.jpg"), visu(500, 400, 1, 3, 0);
     /*
-      For store RGB image data int  3d double aaray
+      For store RGB image data int  3d double array
       kernel[k][x][y]
       Dimension 1 (K): for Red Blue Green (RGB) spectrum
       Dimension 2 (x): pixels of image in width
