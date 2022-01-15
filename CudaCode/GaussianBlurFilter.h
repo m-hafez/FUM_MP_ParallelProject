@@ -4,6 +4,6 @@ class GBFilter
 {
 public:
     double **getGaussian(int, int, double);
-    double **applyFilter(double **, double **, int, int);
+    double ***applyFilter(double ***, double **, int, int, int, int);
 };
 #endif
