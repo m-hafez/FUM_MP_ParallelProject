@@ -1,4 +1,9 @@
+#ifdef _WIN32
 #include "cimg\CImg.h"
+#endif
+#ifdef linux
+#include "cimg/CImg.h"
+#endif
 #include <iostream>
 #include <cmath>
 
