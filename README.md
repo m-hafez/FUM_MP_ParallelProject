@@ -1,5 +1,5 @@
 # FUM_MP_ParallelProject-1_1400-1404
-Ferdowsi University of Mashhad multicore programming course projects, 1400-1401 Semester 1.
+Ferdowsi University of Mashhad parallel programming course projects, 1400-1401 Semester 1.
 
 this project applying [Gaussian blur](https://en.wikipedia.org/wiki/Gaussian_blur) filter on input image and using [CImg](https://cimg.eu/) C++ Library for loading and showing the image.
 
