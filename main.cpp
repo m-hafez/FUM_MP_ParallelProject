@@ -62,7 +62,7 @@ double ***applyFilter(double ***image, double **filter, int width, int height, i
 int main(int argc, char const *argv[])
 {
     //Read input image
-    CImg<unsigned char> originalImage("img/input.jpg"), visu(500, 400, 1, 3, 0);
+    CImg<unsigned char> originalImage("img/input.jpg");
     /*
       For store RGB image data int  3d double array
       kernel[k][x][y]
