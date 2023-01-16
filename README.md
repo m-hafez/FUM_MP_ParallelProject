@@ -4,7 +4,7 @@ Ferdowsi University of Mashhad parallel programming course projects.
 this project applying [Gaussian blur](https://en.wikipedia.org/wiki/Gaussian_blur) filter on input image and using [CImg](https://cimg.eu/) C++ Library for loading and showing the image.
 
 ## OpenMP manual (FA)
-* [GaussianBlurFilter_OpenMP Manual (FA).pdf](https://github.com/m-hafez/FUM_MP_ParallelProject-1_1400-1401/blob/master/GaussianBlurFilter_OpenMP%20Manual%20(FA).pdf)
+* [GaussianBlurFilter_OpenMP Manual (FA).pdf](https://drive.google.com/file/d/1HQMde9PUsr3o8a41i-FR32kIKHcdM4qy/view?usp=share_link)
 ## Requirements
 * [imagemagick](https://imagemagick.org/script/download.php)
 
