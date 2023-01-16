@@ -1,5 +1,5 @@
-# FUM_MP_ParallelProject-1_1400-1404
-Ferdowsi University of Mashhad parallel programming course projects, 1400-1401 Semester 1.
+# FUM_MP_ParallelProject
+Ferdowsi University of Mashhad parallel programming course projects.
 
 this project applying [Gaussian blur](https://en.wikipedia.org/wiki/Gaussian_blur) filter on input image and using [CImg](https://cimg.eu/) C++ Library for loading and showing the image.
 
@@ -9,7 +9,7 @@ this project applying [Gaussian blur](https://en.wikipedia.org/wiki/Gaussian_blu
 * [imagemagick](https://imagemagick.org/script/download.php)
 
 ## CUDA version Google Colab
-* [FUM_MP_ParallelProject-1_1400-1401.ipynb](https://colab.research.google.com/drive/1SLtdS1veZZU5Fy9zX8lLAZk5o5ogKmJu?usp=sharing)
+* [FUM_MP_ParallelProject.ipynb](https://colab.research.google.com/drive/1SLtdS1veZZU5Fy9zX8lLAZk5o5ogKmJu?usp=sharing)
 
 
 ## compile on windows 
