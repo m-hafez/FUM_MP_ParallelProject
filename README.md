@@ -11,6 +11,8 @@ this project applying [Gaussian blur](https://en.wikipedia.org/wiki/Gaussian_blu
 ## CUDA version Google Colab
 * [FUM_MP_ParallelProject.ipynb](https://colab.research.google.com/drive/1SLtdS1veZZU5Fy9zX8lLAZk5o5ogKmJu?usp=sharing)
 
+## OpenMP version Google Colab
+* [FUM_MP_ParallelProject_OMP.ipynb](https://colab.research.google.com/drive/1PRm7uHeRAj7twGjJM3vUPogBlruiHw9B?usp=sharing)
 
 ## compile on windows 
 ```sh
